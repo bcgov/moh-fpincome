@@ -18,7 +18,7 @@
     "component-selector": [
       true,
       "element",
-      "app",
+      "fpir",
       "kebab-case"
     ],
     "import-blacklist": [

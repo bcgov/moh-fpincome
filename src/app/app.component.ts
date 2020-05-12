@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { APP_TITLE } from './app.constants';
 
 @Component({
   selector: 'fpir-root',
@@ -6,5 +7,5 @@ import { Component } from '@angular/core';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  title = 'Fair PharmaCare Income Review';
+  title = APP_TITLE;
 }

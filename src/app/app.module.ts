@@ -6,10 +6,12 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { SharedCoreModule } from 'moh-common-lib';
+import { SplashPageComponent } from './splash-page/splash-page.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SplashPageComponent
   ],
   imports: [
     BrowserModule,

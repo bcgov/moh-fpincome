@@ -1,13 +1,17 @@
 import { TestBed, async } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { AppComponent } from './app.component';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+
 import { SharedCoreModule } from 'moh-common-lib';
+
+import { AppComponent } from './app.component';
 import { APP_TITLE } from './app.constants';
 
 describe('AppComponent', () => {
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       imports: [
+        HttpClientTestingModule,
         RouterTestingModule,
         SharedCoreModule
       ],
@@ -26,6 +30,6 @@ describe('AppComponent', () => {
   it(`should have as title '${APP_TITLE}'`, () => {
     const fixture = TestBed.createComponent(AppComponent);
     const app = fixture.debugElement.componentInstance;
-    expect(app.title).toEqual(APP_TITLE);
+    expect(app.appTitle).toEqual(APP_TITLE);
   });
 });

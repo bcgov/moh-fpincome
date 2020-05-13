@@ -1,9 +1,10 @@
 import { Component, OnInit } from '@angular/core';
 
 import { format } from 'date-fns';
-import { Base, ApiStatusCodes } from 'moh-common-lib';
+import { Base, ApiStatusCodes, PageStateService } from 'moh-common-lib';
 
 import { SUCCESSFUL_CONFIRMATION_MSG, ERROR_CONFIRMATION_MSG, INCOME_REVIEW_PAGES } from '../../income-review.constants';
+import { IncomeReviewDataService } from '../../services/income-review-data.service';
 
 @Component({
   selector: 'fpir-confirmation',
@@ -15,11 +16,16 @@ export class ConfirmationComponent extends Base implements OnInit {
   // Default to error state - NOTE: set to ERROR, when start coding logic
   displayIcon: ApiStatusCodes = ApiStatusCodes.SUCCESS;
 
-  constructor() {
+  constructor( private pageStateService: PageStateService ,
+               private incomeReviewDataService: IncomeReviewDataService ) {
     super();
   }
 
   ngOnInit() {
+    this.pageStateService.clearCompletePages();
+
+    // Set isPrintView to true
+    this.incomeReviewDataService.isPrintView = true;
   }
 
   get isError() {

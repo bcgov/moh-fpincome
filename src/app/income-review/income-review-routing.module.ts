@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
+import { LoadPageGuardService } from 'moh-common-lib';
+
 import { IncomeReviewComponent } from './income-review.component';
 import { incomeReviewPageRoutes } from './income-review-pages.route';
 import { INCOME_REVIEW_PAGES } from './income-review.constants';
@@ -12,6 +14,7 @@ const routes: Routes = [
     path: '',
     component: IncomeReviewComponent,
     children: incomeReviewPageRoutes,
+    canActivateChild: [LoadPageGuardService],
     data: {title: INCOME_REVIEW_PAGES.HOME.title}
   },
   {

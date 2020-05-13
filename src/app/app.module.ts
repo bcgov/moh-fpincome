@@ -13,7 +13,7 @@ import { fakeBackendProvider } from './_developmentHelpers/fake-backend';
 
 const providerList: any = [];
 
-if ( environment.mockBackend.enabled ) {
+if ( environment.developmentMode.enabled && environment.developmentMode.mockBackend.enabled ) {
   // provider used to create fake backend - development with backend
   providerList.push( fakeBackendProvider );
 }

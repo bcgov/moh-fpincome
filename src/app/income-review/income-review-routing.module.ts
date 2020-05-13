@@ -2,11 +2,14 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 
 import { IncomeReviewComponent } from './income-review.component';
+import { incomeReviewPageRoutes } from './income-review-pages.route';
+
 
 const routes: Routes = [
   {
     path: '',
-    component: IncomeReviewComponent
+    component: IncomeReviewComponent,
+    children: incomeReviewPageRoutes
   }
 ];
 

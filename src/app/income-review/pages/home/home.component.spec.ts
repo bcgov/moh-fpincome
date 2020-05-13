@@ -1,20 +1,23 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { SharedCoreModule } from 'moh-common-lib';
 
-import { IncomeReviewComponent } from './income-review.component';
+import { HomeComponent } from './home.component';
 
-describe('IncomeReviewComponent', () => {
-  let component: IncomeReviewComponent;
-  let fixture: ComponentFixture<IncomeReviewComponent>;
+describe('HomeComponent', () => {
+  let component: HomeComponent;
+  let fixture: ComponentFixture<HomeComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
       declarations: [
-        IncomeReviewComponent
+        HomeComponent
       ],
       imports: [
+        FormsModule,
+        ReactiveFormsModule,
         RouterTestingModule,
         SharedCoreModule
       ]
@@ -23,7 +26,7 @@ describe('IncomeReviewComponent', () => {
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(IncomeReviewComponent);
+    fixture = TestBed.createComponent(HomeComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

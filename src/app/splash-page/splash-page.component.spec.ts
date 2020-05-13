@@ -1,6 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
+import { RouterTestingModule } from '@angular/router/testing';
+
+import { SharedCoreModule } from 'moh-common-lib';
 
 import { SplashPageComponent } from './splash-page.component';
+
 
 describe('SplashPageComponent', () => {
   let component: SplashPageComponent;
@@ -8,7 +13,14 @@ describe('SplashPageComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ SplashPageComponent ]
+      declarations: [
+        SplashPageComponent
+      ],
+      imports: [
+        HttpClientTestingModule,
+        RouterTestingModule,
+        SharedCoreModule
+      ]
     })
     .compileComponents();
   }));

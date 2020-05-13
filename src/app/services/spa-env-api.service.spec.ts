@@ -2,7 +2,7 @@ import { TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 
-import { SpaEnvService } from './spa-env.service';
+import { SpaEnvApiService } from './spa-env-api.service';
 
 describe('SpaEnvService', () => {
   beforeEach(() => TestBed.configureTestingModule({
@@ -13,7 +13,7 @@ describe('SpaEnvService', () => {
   }));
 
   it('should be created', () => {
-    const service: SpaEnvService = TestBed.get(SpaEnvService);
+    const service: SpaEnvApiService = TestBed.get(SpaEnvApiService);
     expect(service).toBeTruthy();
   });
 });

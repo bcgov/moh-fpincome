@@ -1,9 +1,19 @@
 export const environment = {
   production: true,
 
-  /** Url used for spa-env server, where we get splash screen info. */
-  envServerUrl: '/fpcare/api/env',
+  /**
+   * Simulate back-end for locally development - turn for prod
+   */
+  mockBackend: {
+    enabled: false,
+    simulateMaintMode: false
+  },
 
-  /** URL for log service */
-  loggingURL: '/fpcare/api/logging',
+  /**
+   * URLs for API rest calls
+   */
+  api: {
+    envServerUrl: '/fpcare/api/env', // spa-env service - splash page information
+    loggingURL: '/fpcare/api/logging' // splunk forwarder service
+  }
 };

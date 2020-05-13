@@ -43,4 +43,10 @@ export class ConfirmationComponent extends Base implements OnInit {
   get pageTitle() {
     return INCOME_REVIEW_PAGES.CONFIRMATION.title;
   }
+
+  print( event: Event ) {
+    window.print();
+    event.stopPropagation();
+    return false;
+  }
 }

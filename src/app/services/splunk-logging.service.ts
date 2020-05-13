@@ -13,7 +13,7 @@ export class SplunkLoggingService extends CommonLogger {
 
   constructor(protected http: HttpClient) {
     super(http);
-    this.setURL( environment.loggingURL );
+    this.setURL( environment.api.loggingURL );
     this.programName = 'fpincome';
     // generate session per refresh as no state persists.
     this.applicationId = UUID.UUID();

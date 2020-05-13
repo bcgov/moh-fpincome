@@ -8,6 +8,15 @@ import { AppComponent } from './app.component';
 import { SharedCoreModule } from 'moh-common-lib';
 import { SplashPageComponent } from './splash-page/splash-page.component';
 import { HttpClientModule } from '@angular/common/http';
+import { environment } from '../environments/environment';
+import { fakeBackendProvider } from './_developmentHelpers/fake-backend';
+
+const providerList: any = [];
+
+if ( environment.mockBackend.enabled ) {
+  // provider used to create fake backend - development with backend
+  providerList.push( fakeBackendProvider );
+}
 
 @NgModule({
   declarations: [
@@ -21,7 +30,7 @@ import { HttpClientModule } from '@angular/common/http';
     SharedCoreModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [providerList],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

@@ -16,7 +16,7 @@ export class ConfirmationComponent extends Base implements OnInit {
   // Default to error state - NOTE: set to ERROR, when start coding logic
   displayIcon: ApiStatusCodes = ApiStatusCodes.SUCCESS;
 
-  constructor( private pageStateService: PageStateService ,
+  constructor( private pageStateService: PageStateService,
                private incomeReviewDataService: IncomeReviewDataService ) {
     super();
   }

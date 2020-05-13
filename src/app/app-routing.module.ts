@@ -4,6 +4,7 @@ import { APP_ROUTES } from './app.constants';
 import { SplashPageComponent } from './splash-page/splash-page.component';
 
 
+
 const routes: Routes = [
   {
     path: APP_ROUTES.income_review,
@@ -11,7 +12,8 @@ const routes: Routes = [
   },
   {
     path: APP_ROUTES.maintenance,
-    component: SplashPageComponent
+    component: SplashPageComponent,
+    data: { title: APP_ROUTES.maintenance }
   },
   {
     path: '',

@@ -5,7 +5,7 @@ import { OnInit, AfterViewInit, OnDestroy } from '@angular/core';
 
 export class BaseForm extends AbstractReactForm implements OnInit, AfterViewInit, OnDestroy {
 
-  private subscription: Subscription;
+  private _subscription: Subscription;
 
   constructor( protected router: Router,
                protected containerService: ContainerService ) {
@@ -19,14 +19,14 @@ export class BaseForm extends AbstractReactForm implements OnInit, AfterViewInit
   }
 
   ngAfterViewInit() {
-    this.subscription = this.containerService.$continueBtn.subscribe(
+    this._subscription = this.containerService.$continueBtn.subscribe(
       (obs) => {
         this.continue();
     });
   }
 
   ngOnDestroy() {
-    this.subscription.unsubscribe();
+    this._subscription.unsubscribe();
   }
 
   continue() {

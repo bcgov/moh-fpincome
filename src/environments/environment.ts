@@ -3,7 +3,13 @@
 // The list of file replacements can be found in `angular.json`.
 
 export const environment = {
-  production: false
+  production: false,
+
+  /** Url used for spa-env server, where we get splash screen info. */
+  envServerUrl: '/fpcare/api/env',
+
+  /** URL for log service */
+  loggingURL: '/fpcare/api/logging',
 };
 
 /*

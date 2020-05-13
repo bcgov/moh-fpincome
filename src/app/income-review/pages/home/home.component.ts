@@ -3,16 +3,18 @@ import { BaseForm } from '../../models/base-form';
 import { Router } from '@angular/router';
 import { ContainerService } from 'moh-common-lib';
 import { INCOME_REVIEW_PAGES } from '../../income-review.constants';
+import { IncomeReviewDataService } from '../../services/income-review-data.service';
 
 @Component({
   selector: 'fpir-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent  extends BaseForm implements OnInit {
+export class HomeComponent extends BaseForm implements OnInit {
 
   constructor( protected router: Router,
-               protected containerService: ContainerService ) {
+               protected containerService: ContainerService,
+               private incomeReviewDataService: IncomeReviewDataService ) {
     super( router, containerService );
    }
 

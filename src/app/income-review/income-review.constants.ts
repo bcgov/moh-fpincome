@@ -2,9 +2,10 @@ import { APP_ROUTES } from '../app.constants';
 
 
 /** Name of each page */
-export const PAGE_NAMES = {
+const PAGE_NAMES = {
   home: 'Home',
-  review: 'Review'
+  review: 'Review',
+  confirmation: 'Confirmation'
 };
 
 /** Page route information */
@@ -18,7 +19,15 @@ export const INCOME_REVIEW_PAGES = {
     path: PAGE_NAMES.review,
     fullpath: `${APP_ROUTES.income_review}/${PAGE_NAMES.review}`,
     title: PAGE_NAMES.review
-  }
+  },
+  CONFIRMATION: {
+    path: PAGE_NAMES.confirmation,
+    fullpath: `${APP_ROUTES.income_review}/${PAGE_NAMES.confirmation}`,
+    title: PAGE_NAMES.confirmation
+  },
 };
 
 export const FORM_SUBMIT_LABEL = 'Submit';
+export const SUCCESSFUL_CONFIRMATION_MSG = 'Your application has been submitted.';
+export const ERROR_CONFIRMATION_MSG = 'Submission of your application failed.';
+

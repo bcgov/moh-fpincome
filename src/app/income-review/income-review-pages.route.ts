@@ -1,4 +1,4 @@
-import { INCOME_REVIEW_PAGES, PAGE_NAMES } from './income-review.constants';
+import { INCOME_REVIEW_PAGES } from './income-review.constants';
 import { Routes } from '@angular/router';
 import { HomeComponent } from './pages/home/home.component';
 import { ReviewComponent } from './pages/review/review.component';
@@ -11,13 +11,13 @@ export const incomeReviewPageRoutes: Routes = [
     pathMatch: 'full'
   },
   {
-    path: PAGE_NAMES.home,
+    path: INCOME_REVIEW_PAGES.HOME.path,
     component: HomeComponent,
-    data: { title: PAGE_NAMES.home }
+    data: { title: INCOME_REVIEW_PAGES.HOME.title }
   },
   {
-    path: PAGE_NAMES.review,
+    path: INCOME_REVIEW_PAGES.REVIEW.path,
     component: ReviewComponent,
-    data: { title: PAGE_NAMES.review }
+    data: { title: INCOME_REVIEW_PAGES.REVIEW.title }
   }
 ];

@@ -7,6 +7,7 @@ import { AppComponent } from './app.component';
 
 import { SharedCoreModule } from 'moh-common-lib';
 import { SplashPageComponent } from './splash-page/splash-page.component';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
@@ -17,7 +18,8 @@ import { SplashPageComponent } from './splash-page/splash-page.component';
     BrowserModule,
     BrowserAnimationsModule,
     AppRoutingModule,
-    SharedCoreModule
+    SharedCoreModule,
+    HttpClientModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -3,13 +3,21 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { IncomeReviewComponent } from './income-review.component';
 import { incomeReviewPageRoutes } from './income-review-pages.route';
+import { INCOME_REVIEW_PAGES } from './income-review.constants';
+import { ConfirmationComponent } from './pages/confirmation/confirmation.component';
 
 
 const routes: Routes = [
   {
     path: '',
     component: IncomeReviewComponent,
-    children: incomeReviewPageRoutes
+    children: incomeReviewPageRoutes,
+    data: {title: INCOME_REVIEW_PAGES.HOME.title}
+  },
+  {
+    path: INCOME_REVIEW_PAGES.CONFIRMATION.path,
+    component: ConfirmationComponent,
+    data: {title: INCOME_REVIEW_PAGES.CONFIRMATION.title}
   }
 ];
 

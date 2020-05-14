@@ -17,6 +17,7 @@ export const environment = {
    * assist with development - turned off for production
    */
   developmentMode: {
+    /** When enabled = true, page guards can be bypassed if bypassGuards = true */
     enabled: true,
 
     /**
@@ -26,6 +27,7 @@ export const environment = {
 
     /**
      * Simulate back-end
+     * When enabled = true, mockBackend can be used when mockBackend: {enabled = true}, loads provider for a fake backend
      */
     mockBackend: {
       enabled: true,

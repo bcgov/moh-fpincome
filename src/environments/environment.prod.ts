@@ -24,9 +24,9 @@ export const environment = {
      * Simulate back-end
      */
     mockBackend: {
-      enabled: true,
+      enabled: false,
 
-      // YYYY-MM-DD h:mm:ss A
+      // YYYY-MM-DD 24H:mm:ss
       maintModeStart: '',
       maintModeEnd: '',
       maintModeMessage: 'Fair PharmaCare is unavaible.'

@@ -30,7 +30,7 @@ export const environment = {
     mockBackend: {
       enabled: true,
 
-      // YYYY-MM-DD HH:mm:ss A
+      // YYYY-MM-DD 24H:mm:ss
       maintModeStart: '2020-05-13 21:45:00',
       maintModeEnd: '2020-05-13 21:50:00',
       maintModeMessage: 'Fair PharmaCare is unavaible.'

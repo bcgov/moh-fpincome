@@ -2,6 +2,7 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { SplashPageService } from '../services/splash-page.service';
 import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
+import { MAINT_FLAG_TRUE } from '../app.constants';
 
 @Component({
   selector: 'fpir-splash-page',
@@ -27,7 +28,7 @@ export class SplashPageComponent implements OnInit, OnDestroy {
         this.endTime = values.SPA_ENV_FPIR_MAINTENANCE_END;
         this.message = values.SPA_ENV_FPIR_MAINTENANCE_MESSAGE;
 
-        if ( values.SPA_ENV_FPIR_MAINTENANCE_FLAG !== 'true' ) {
+        if ( values.SPA_ENV_FPIR_MAINTENANCE_FLAG !== MAINT_FLAG_TRUE ) {
           this.router.navigate( ['/'] );
         }
       }

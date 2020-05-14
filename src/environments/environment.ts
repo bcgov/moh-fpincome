@@ -29,7 +29,11 @@ export const environment = {
      */
     mockBackend: {
       enabled: true,
-      simulateMaintMode: false
+
+      // YYYY-MM-DD HH:mm:ss A
+      maintModeStart: '2020-05-13 21:45:00',
+      maintModeEnd: '2020-05-13 21:50:00',
+      maintModeMessage: 'Fair PharmaCare is unavaible.'
     }
   }
 };

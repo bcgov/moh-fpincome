@@ -24,7 +24,7 @@ export class FakeBackendInterceptor implements HttpInterceptor  {
 
         if (request.url.includes( environment.api.envServerUrl ) ) {
           console.log( 'Fake-backend for spa-env' );
-          payload = 'sucess';
+          payload = this.fakebackendService.getEnvSpaValues( request );
         }
 
         if ( request.url.includes( environment.api.loggingURL ) ) {

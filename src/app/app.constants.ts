@@ -32,3 +32,5 @@ export const FPIR_SPA_ENV_CONFIG = {
  * Thus, we're updating types and modifying runtime behaviour in one stroke.
  */
 export type SpaEnvResponse = typeof FPIR_SPA_ENV_CONFIG;
+export const MAINT_FLAG_TRUE = 'true';
+export const MAINT_FLAG_FALSE = 'false';

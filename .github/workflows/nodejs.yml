@@ -3,7 +3,11 @@
 
 name: Node.js CI
 
-on: [push, pull_request]
+on:
+  push:
+    branches-ignore: [master]
+  pull_request:
+    branches: [master]
 
 jobs:
   build:
@@ -22,4 +26,6 @@ jobs:
         node-version: ${{ matrix.node-version }}
     - run: npm ci
     - run: npm run build
-    - run: npm run test
+    - run: npm run test-headless
+      env:
+        CI: true

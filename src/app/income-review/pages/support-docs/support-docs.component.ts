@@ -75,33 +75,43 @@ export class SupportDocsComponent {
       switch (error.error) {
         case CommonImageError.WrongType:
           this.fileError = 'That is the wrong type of attachment to submit.';
+          break;
         case CommonImageError.TooSmall:
           this.fileError =
             'That attachment is too small, please upload a larger attachment.';
+          break;
         case CommonImageError.TooBig:
           this.fileError =
             'That attachment is too big, please upload a smaller attachment.';
+          break;
         case CommonImageError.AlreadyExists:
           this.fileError = 'That attachment has already been uploaded.';
+          break;
         case CommonImageError.Unknown:
           this.fileError =
             'The upload failed, please try again. If the issue persists, please upload a different attachment.';
+          break;
         case CommonImageError.CannotOpen:
           this.fileError =
             'That attachment cannot be opened, please upload a different attachment.';
+          break;
         case CommonImageError.PDFnotSupported:
           this.fileError =
             'That PDF type is not supported, please upload a different attachment.';
+          break;
         case CommonImageError.CannotOpenPDF:
           this.fileError =
             'That PDF cannot be opened, please upload a different attachment.';
+          break;
         default:
-          if (this.fileError) {
-            this.splunkLoggingService.logError({
-              event: `Document Upload - ${this.case}`,
-              errorCode: this.fileError,
-            });
-          }
+          break;
+      }
+
+      if (this.fileError) {
+        this.splunkLoggingService.logError({
+          event: `Document Upload - ${this.case}`,
+          errorCode: this.fileError,
+        });
       }
     }
   }

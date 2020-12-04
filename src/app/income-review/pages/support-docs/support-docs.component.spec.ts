@@ -1,32 +1,29 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { NO_ERRORS_SCHEMA } from '@angular/core';
+import { IncomeReviewDataService } from '../../services/income-review-data.service';
+import { SplunkLoggingService } from '../../../services/splunk-logging.service';
 import { SupportDocsComponent } from './support-docs.component';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
-import { SharedCoreModule } from 'moh-common-lib';
-import { RouterTestingModule } from '@angular/router/testing';
-import { HttpClientTestingModule } from '@angular/common/http/testing';
 
 describe('SupportDocsComponent', () => {
   let component: SupportDocsComponent;
   let fixture: ComponentFixture<SupportDocsComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [SupportDocsComponent],
-      imports: [
-        FormsModule,
-        ReactiveFormsModule,
-        RouterTestingModule,
-        SharedCoreModule,
-        HttpClientTestingModule,
-      ],
-    }).compileComponents();
-  }));
-
   beforeEach(() => {
+    const incomeReviewDataServiceStub = () => ({});
+    const splunkLoggingServiceStub = () => ({ logError: (object) => ({}) });
+    TestBed.configureTestingModule({
+      schemas: [NO_ERRORS_SCHEMA],
+      declarations: [SupportDocsComponent],
+      providers: [
+        {
+          provide: IncomeReviewDataService,
+          useFactory: incomeReviewDataServiceStub,
+        },
+        { provide: SplunkLoggingService, useFactory: splunkLoggingServiceStub },
+      ],
+    });
     fixture = TestBed.createComponent(SupportDocsComponent);
     component = fixture.componentInstance;
-    fixture.detectChanges();
   });
 
   it('should create', () => {

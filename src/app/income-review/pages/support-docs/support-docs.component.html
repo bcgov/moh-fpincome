@@ -22,7 +22,6 @@
       instructionText="Click Add or drag and drop files into this box"
       [images]="files"
       (imagesChange)="handleImagesChange($event)"
-      [errorMessages]="errorMessage"
       (errorDocument)="handleSupportDocError($event)"
       [required]="true"
     >

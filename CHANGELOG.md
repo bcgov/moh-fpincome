@@ -1,3 +1,11 @@
+<a name="2.0.2"></a>
+
+## [2.0.2](https://github.com/bcgov/moh-fpincome/compare/v2.0.1...v2.0.2) (2020-12-18)
+
+### Bug Fixes
+
+- **review:** corrected display and values in payload ([ac64277](https://github.com/bcgov/moh-fpincome/commit/ac64277))
+
 <a name="2.0.1"></a>
 
 ## [2.0.1](https://github.com/bcgov/moh-fpincome/compare/v2.0.0...v2.0.1) (2020-12-17)

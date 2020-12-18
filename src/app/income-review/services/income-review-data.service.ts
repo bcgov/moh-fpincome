@@ -140,14 +140,13 @@ export class IncomeReviewDataService {
           applicantIncome: {
             income: this._currencyStrToNumber(this.applicant.incomeStr),
           },
-          totalIncome: this.incomeTotal,
           lastYearIncome: this.isLastYearIncome,
         },
         applicantConsent: this.applicant.consent,
       },
     };
 
-    if (this.isLastYearIncome) {
+    if (this.isLastYearIncome && this.hasRdspIncome) {
       payload.fpcIncomeReview.income.applicantIncome = Object.assign(
         payload.fpcIncomeReview.income.applicantIncome,
         {
@@ -159,7 +158,15 @@ export class IncomeReviewDataService {
         payload.fpcIncomeReview.income,
         {
           rdspTotal: this.rdspIncomeTotal,
-          netTotal: this.netIncomeTotal,
+          netTotal: this.incomeTotal,
+          totalIncome: this.netIncomeTotal,
+        }
+      );
+    } else {
+      payload.fpcIncomeReview.income = Object.assign(
+        payload.fpcIncomeReview.income,
+        {
+          totalIncome: this.incomeTotal,
         }
       );
     }
@@ -325,7 +332,7 @@ export class IncomeReviewDataService {
       ]);
     }
 
-    if (this.isLastYearIncome === true) {
+    if (this.isLastYearIncome === true && this.hasRdspIncome === true) {
       obj.sectionItems = obj.sectionItems.concat([
         {
           label: this.rdspIncomeLabel,
@@ -404,7 +411,7 @@ export class IncomeReviewDataService {
   private _currencyStrToNumber(strValue: string): number {
     let _value = 0;
 
-    if (strValue) {
+    if (strValue !== null && strValue !== undefined) {
       let str = strValue.replace(/,/g, '');
       str = str.replace('$', '');
       str = Number(str).toFixed();
@@ -447,7 +454,7 @@ export class IncomeReviewDataService {
       },
     };
 
-    if (this.isLastYearIncome) {
+    if (this.isLastYearIncome && this.hasRdspIncome) {
       obj.spouseIncome = Object.assign(obj.spouseIncome, {
         rdspIncome: this._currencyStrToNumber(this.spouse.rdspIncomeStr),
       });

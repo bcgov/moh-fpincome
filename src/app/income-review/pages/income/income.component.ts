@@ -361,12 +361,9 @@ export class IncomeComponent extends BaseForm implements OnInit, AfterViewInit {
       apRsdpIncome.clearValidators();
     }
 
-    console.log('hasSpouse: ', this.hasSpouse);
     if (this.hasSpouse) {
       const spRsdpIncome = this.formGroup.controls.spouseRdspIncome;
       spRsdpIncome.reset(null);
-
-      console.log('hasRdspIncome: ', this.hasRdspIncome);
 
       if (this.hasRdspIncome) {
         spRsdpIncome.setValidators(Validators.required);

@@ -8,7 +8,7 @@ import { CollectionNoticeComponent } from '../../component/collection-notice/col
 import { environment } from '../../../../environments/environment';
 import { UUID } from 'angular2-uuid';
 import { IncomeReviewApiService } from '../../services/income-review-api.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'fpir-home',
@@ -76,8 +76,14 @@ export class HomeComponent extends BaseForm implements OnInit, AfterViewInit {
     // Use attribute 'required' rather than setting Valiator.required so that
     // screen readers indentify fields that are required
     this.formGroup = this.fb.group({
-      isRegistered: [this.incomeReviewDataService.isRegistered],
-      isIncomeLess: [this.incomeReviewDataService.isIncomeLess],
+      isRegistered: [
+        this.incomeReviewDataService.isRegistered,
+        Validators.required,
+      ],
+      isIncomeLess: [
+        this.incomeReviewDataService.isIncomeLess,
+        Validators.required,
+      ],
     });
   }
 

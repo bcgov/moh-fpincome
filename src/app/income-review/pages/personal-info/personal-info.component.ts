@@ -7,7 +7,7 @@ import {
   commonValidatePostalcode,
 } from 'moh-common-lib';
 import { IncomeReviewDataService } from '../../services/income-review-data.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { INCOME_REVIEW_PAGES } from '../../income-review.constants';
 
 @Component({
@@ -69,16 +69,25 @@ export class PersonalInfoComponent extends BaseForm
     // Use attribute 'required' rather than setting Valiator.required so that
     // screen readers indentify fields that are required
     this.formGroup = this.fb.group({
-      firstName: [this.incomeReviewDataService.applicant.firstName],
-      lastName: [this.incomeReviewDataService.applicant.lastName],
-      address: [this.incomeReviewDataService.address.addressLine1],
-      city: [this.incomeReviewDataService.address.city],
+      firstName: [
+        this.incomeReviewDataService.applicant.firstName,
+        Validators.required,
+      ],
+      lastName: [
+        this.incomeReviewDataService.applicant.lastName,
+        Validators.required,
+      ],
+      address: [
+        this.incomeReviewDataService.address.addressLine1,
+        Validators.required,
+      ],
+      city: [this.incomeReviewDataService.address.city, Validators.required],
       postalCode: [
         this.incomeReviewDataService.address.postal,
-        [commonValidatePostalcode(true, true)],
+        [Validators.required, commonValidatePostalcode(true, true)],
       ],
-      phn: [this.incomeReviewDataService.applicant.phn],
-      hasSpouse: [this.incomeReviewDataService.hasSpouse],
+      phn: [this.incomeReviewDataService.applicant.phn, Validators.required],
+      hasSpouse: [this.incomeReviewDataService.hasSpouse, Validators.required],
       spFirstName: [this.incomeReviewDataService.spouse.firstName],
       spLastName: [this.incomeReviewDataService.spouse.lastName],
       spPhn: [this.incomeReviewDataService.spouse.phn],
@@ -110,6 +119,7 @@ export class PersonalInfoComponent extends BaseForm
     });
     this.formGroup.controls.hasSpouse.valueChanges.subscribe((val) => {
       this.incomeReviewDataService.hasSpouse = val;
+      this.updateSpouseValidators(val);
     });
     this.formGroup.controls.spFirstName.valueChanges.subscribe(
       (val) => (this.incomeReviewDataService.spouse.firstName = val)
@@ -131,20 +141,53 @@ export class PersonalInfoComponent extends BaseForm
     }
   }
 
-  checkDuplicatePhn(onSpouse: boolean = true) {
-    const duplicateError =
-      this.hasSpouseFlag &&
-      this.incomeReviewDataService.applicant.phn ===
-        this.incomeReviewDataService.spouse.phn;
+  updateSpouseValidators(hasSpouse: boolean) {
+    const firstName = this.formGroup.controls.spFirstName;
+    const lastName = this.formGroup.controls.spLastName;
+    const spousePhn = this.formGroup.controls.spPhn;
 
-    if (duplicateError) {
-      this.formGroup.controls.phn.setErrors(
-        !onSpouse ? { duplicate: true } : null
-      );
-      this.formGroup.controls.spPhn.setErrors(
-        onSpouse ? { duplicate: true } : null
-      );
-      return;
+    if (hasSpouse) {
+      firstName.setValidators(Validators.required);
+      lastName.setValidators(Validators.required);
+      spousePhn.setValidators(Validators.required);
+    } else {
+      firstName.clearValidators();
+      lastName.clearValidators();
+      spousePhn.clearValidators();
+
+      firstName.patchValue(null);
+      lastName.patchValue(null);
+      spousePhn.patchValue(null);
+
+      // If income was entered and applicant removes spouse, income fields need to be cleared.
+      this.incomeReviewDataService.spouse.clearIncome();
+    }
+
+    firstName.updateValueAndValidity();
+    lastName.updateValueAndValidity();
+    spousePhn.updateValueAndValidity();
+    this.formGroup.updateValueAndValidity({ onlySelf: false });
+  }
+
+  checkDuplicatePhn(onSpouse: boolean = true) {
+    if (
+      this.incomeReviewDataService.applicant.hasPhn &&
+      this.incomeReviewDataService.spouse.hasPhn
+    ) {
+      const duplicateError =
+        this.hasSpouseFlag &&
+        this.incomeReviewDataService.applicant.phn ===
+          this.incomeReviewDataService.spouse.phn;
+
+      if (duplicateError) {
+        this.formGroup.controls.phn.setErrors(
+          !onSpouse ? { duplicate: true } : null
+        );
+        this.formGroup.controls.spPhn.setErrors(
+          onSpouse ? { duplicate: true } : null
+        );
+        return;
+      }
     }
 
     // Clear duplicate errors

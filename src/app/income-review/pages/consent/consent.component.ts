@@ -12,7 +12,7 @@ import {
   FORM_SUBMIT_LABEL,
   INCOME_REVIEW_PAGES,
 } from '../../income-review.constants';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { IncomeReviewApiService } from '../../services/income-review-api.service';
 import { SplunkLoggingService } from '../../../services/splunk-logging.service';
 import { ServerPayload } from '../../models/review-income-api';
@@ -83,8 +83,17 @@ export class ConsentComponent extends BaseForm
     // Use attribute 'required' rather than setting Valiator.required so that
     // screen readers indentify fields that are required
     this.formGroup = this.fb.group({
-      registrantConsent: [this.incomeReviewDataService.applicant.consent],
-      spouseConsent: [this.incomeReviewDataService.spouse.consent],
+      registrantConsent: [
+        this.incomeReviewDataService.applicant.consent,
+        Validators.required,
+      ],
+      spouseConsent: [
+        this.incomeReviewDataService.spouse.consent,
+        {
+          validators:
+            this.hasSpouse && this.hasSpouse ? Validators.required : null,
+        },
+      ],
     });
   }
 

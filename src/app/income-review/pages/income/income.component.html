@@ -207,7 +207,14 @@
             <ul>
               <li>
                 Canada Revenue Agency (CRA) Notice of Assessment or Notice of
-                Reassessment or proof of income statement
+                Reassessment or
+                <a
+                  href="{{ incomeStmt }}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >proof of income statement</a
+                >
+                available from the CRA website.
               </li>
             </ul>
             <ng-container *ngIf="hasRdspIncome">
@@ -234,9 +241,9 @@
 
       <ng-container *ngIf="isLastYearIncome === false">
         <p class="pt-2">
-          <strong>If you want</strong> HIBC to consider your income fr last year
-          as well as your income for this year, you can upload your CRA Notice
-          of Assessment / Reassessment or
+          <strong>If you want</strong> HIBC to consider your income for last
+          year as well as your income for this year, you can upload your CRA
+          Notice of Assessment / Reassessment or
           <a href="{{ incomeStmt }}" target="_blank" rel="noopener noreferrer"
             >proof of income statement</a
           >; <strong>AND</strong> if applicable, T4A slip for RDSP income.

@@ -316,6 +316,12 @@ export class IncomeComponent extends BaseForm implements OnInit, AfterViewInit {
   continue() {
     this.markAllInputsTouched();
 
+    // Work around since file uploader is not compatiable with reactive forms
+    // and it is not designed as a custom form control
+    if (this.incomeReviewDataService.incomeSupportDocs.length < 1) {
+      this.errorMessage = 'File is required.';
+    }
+
     if (
       this.canContinue() &&
       this.incomeReviewDataService.incomeSupportDocs.length > 0 &&

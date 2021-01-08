@@ -13,7 +13,7 @@
           name="firstName"
           label="{{ applFirstNameLabel }}"
           maxlength="{{ firstNameLen }}"
-          required
+          aria-required="true"
         ></common-name>
       </div>
       <div class="p-2">
@@ -22,7 +22,7 @@
           name="lastName"
           label="{{ applLastNameLabel }}"
           maxlength="{{ lastNameLen }}"
-          required
+          aria-required="true"
         ></common-name>
       </div>
       <!-- NOTE: When library is updated placeholder fields can be removed -->
@@ -33,7 +33,7 @@
           label="{{ applAddressLabel }}"
           maxlength="{{ addressLen }}"
           placeholder=""
-          required
+          aria-required="true"
         ></common-street>
       </div>
       <div class="p-2">
@@ -42,7 +42,7 @@
           name="city"
           maxlength="{{ cityNameLen }}"
           placeholder=""
-          required
+          aria-required="true"
         ></common-city>
       </div>
     </div>
@@ -52,7 +52,7 @@
           formControlName="postalCode"
           name="postalCode"
           label="{{ applPostalCodeLabel }}"
-          required
+          aria-required="true"
         ></common-postal-code>
       </div>
       <div class="p-2">
@@ -61,7 +61,7 @@
           name="phn"
           label="{{ phnLabel }}"
           placeholder=""
-          required
+          aria-required="true"
         ></common-phn>
       </div>
     </div>
@@ -72,7 +72,7 @@
       name="hasSpouse"
       [label]="hasSpouseQuestion"
       display="table-row-group"
-      required
+      aria-required="true"
     ></common-radio>
     <div *ngIf="hasSpouseFlag" class="border-left pl-4">
       <div class="col-md-8">
@@ -82,7 +82,7 @@
             name="spFirstName"
             label="{{ spFirstNameLabel }}"
             maxlength="{{ firstNameLen }}"
-            [required]="hasSpouseFlag"
+            [attr.aria-required]="hasSpouseFlag"
           ></common-name>
         </div>
         <div class="p-2">
@@ -91,7 +91,7 @@
             name="spLastName"
             label="{{ spLastNameLabel }}"
             maxlength="{{ lastNameLen }}"
-            [required]="hasSpouseFlag"
+            [attr.aria-required]="hasSpouseFlag"
           ></common-name>
         </div>
       </div>
@@ -102,7 +102,7 @@
             name="spPhn"
             label="{{ spPhnLabel }}"
             placeholder=""
-            [required]="hasSpouseFlag"
+            [attr.aria-required]="hasSpouseFlag"
           ></common-phn>
         </div>
       </div>

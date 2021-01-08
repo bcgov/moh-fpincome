@@ -42,6 +42,10 @@ export class Registrant extends Person {
     this.incomeStr = undefined;
     this.rdspIncomeStr = undefined;
   }
+
+  get hasPhn() {
+    return this.phn !== undefined && this.phn !== null;
+  }
 }
 
 @Injectable({

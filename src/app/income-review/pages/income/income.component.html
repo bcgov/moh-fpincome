@@ -27,7 +27,7 @@
       label="Choose the one that applies:"
       [radioLabels]="incomeOptions"
       display="table-row-group"
-      required
+      aria-required="true"
     ></common-radio>
 
     <aside aria-labelledby="isLastYearIncome">
@@ -46,7 +46,7 @@
           formControlName="income"
           [attr.aria-labelledby]="ariaLabelIncome"
           [moneyMask]="moneyMask"
-          required
+          aria-required="true"
         >
           <div label class="finance-text--format">{{ incomeLabel }}</div>
           <div rowId>{{ incomeLineNumber }}</div>
@@ -60,7 +60,7 @@
             formControlName="spouseIncome"
             aria-labelledby="ariaLabelSpouseIncome"
             [moneyMask]="moneyMask"
-            [required]="hasSpouse"
+            [attr.aria-required]="hasSpouse"
           >
             <div label class="finance-text--format">
               {{ spouseIncomeLabel }}
@@ -90,7 +90,7 @@
           name="HasRdspIncome"
           label="Do you receive Registered Disability Savings Plan (RDSP) income?"
           display="table-row-group"
-          [required]="isLastYearIncome"
+          [attr.aria-required]="isLastYearIncome"
         ></common-radio>
 
         <ng-container *ngIf="hasRdspIncome">
@@ -104,7 +104,7 @@
               formControlName="rdspIncome"
               aria-labelledby="RdspIncome"
               [moneyMask]="moneyMask"
-              [required]="hasRdspIncome"
+              [attr.aria-required]="hasRdspIncome"
             >
               <div label class="finance-text--format">
                 {{ rdspIncomeLabel }}
@@ -120,13 +120,13 @@
                 formControlName="spouseRdspIncome"
                 aria-labelledby="SpouseRdspIncome"
                 [moneyMask]="moneyMask"
-                [required]="hasSpouse && hasRdspIncome"
+                [attr.aria-required]="hasSpouse && hasRdspIncome"
               >
                 <div label class="finance-text--format">
                   {{ spouseRdspIncomeLabel }}
                 </div>
                 <div rowId>{{ spouseRdspLineNo }}</div>
-                <div errorsspouseRdspIncomeLabel class="finance-error--format">
+                <div errors class="finance-error--format">
                   {{ spouseRdspIncomeLabel }} is required.
                 </div>
               </fpir-financial-input>
@@ -188,13 +188,12 @@
       <p class="border-bottom"><em>Supporting document(s)</em></p>
 
       <common-page-section layout="double">
-        <!--TODO: Fix library issue with pdf upload, investigate delay in upload thumb display
-                  PDF not uploading - errroring  -->
+        <!-- File upload not compatible with reactive forms -->
         <common-file-uploader
           instructionText="{{ uploadInstructions }}"
           [(images)]="supportingDocuments"
           (errorDocument)="handleError($event)"
-          required
+          [required]="true"
           id="supportDocuments"
         >
         </common-file-uploader>
@@ -208,7 +207,14 @@
             <ul>
               <li>
                 Canada Revenue Agency (CRA) Notice of Assessment or Notice of
-                Reassessment or proof of income statement
+                Reassessment or
+                <a
+                  href="{{ incomeStmt }}"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  >proof of income statement</a
+                >
+                available from the CRA website.
               </li>
             </ul>
             <ng-container *ngIf="hasRdspIncome">
@@ -235,9 +241,9 @@
 
       <ng-container *ngIf="isLastYearIncome === false">
         <p class="pt-2">
-          <strong>If you want</strong> HIBC to consider your income fr last year
-          as well as your income for this year, you can upload your CRA Notice
-          of Assessment / Reassessment or
+          <strong>If you want</strong> HIBC to consider your income for last
+          year as well as your income for this year, you can upload your CRA
+          Notice of Assessment / Reassessment or
           <a href="{{ incomeStmt }}" target="_blank" rel="noopener noreferrer"
             >proof of income statement</a
           >; <strong>AND</strong> if applicable, T4A slip for RDSP income.

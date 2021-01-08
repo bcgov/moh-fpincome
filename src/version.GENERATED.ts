@@ -1,11 +1,11 @@
 // DO NOT DELETE OR APP WILL FAIL TO COMPILE! Generated from version.js
-export const gitCommit = '0ff3355';
-export const buildTime = '12/8/2020 at 12:05:47 PM';
+export const gitCommit = '57d2159';
+export const buildTime = '1/6/2021 at 10:30:03 AM';
 /** App version retrieved from package.json. */
-export const projectVersion = '1.0.0';
+export const projectVersion = '2.0.2';
 /** Human readable message  */
 export const message =
-  'Canonical Version: 0ff3355 - 12/8/2020 at 12:05:47 PM (v1.0.0)' +
-  '\nhttps://github.com/bcgov/moh-fpincome/commits/0ff3355';
+  'Canonical Version: 57d2159 - 1/6/2021 at 10:30:03 AM (v2.0.2)' +
+  '\nhttps://github.com/bcgov/moh-fpincome/commits/57d2159';
 /** If true, other values should be present. */
 export const success = true;

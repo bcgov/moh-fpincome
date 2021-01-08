@@ -8,7 +8,7 @@ import { CollectionNoticeComponent } from '../../component/collection-notice/col
 import { environment } from '../../../../environments/environment';
 import { UUID } from 'angular2-uuid';
 import { IncomeReviewApiService } from '../../services/income-review-api.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 
 @Component({
   selector: 'fpir-home',
@@ -31,7 +31,8 @@ export class HomeComponent extends BaseForm implements OnInit, AfterViewInit {
   // Radio button questions
   isRegisteredQuestion: string = 'Are you registered for Fair PharmaCare?';
   isIncomeLessQuestion: string =
-    'Is your gross income for this year at least 10% less than your income from two years ago?';
+    'Is your gross income for this year or your net income for last year at least 10% less than ' +
+    'your income from two years ago?';
 
   constructor(
     protected router: Router,
@@ -73,11 +74,15 @@ export class HomeComponent extends BaseForm implements OnInit, AfterViewInit {
   ngOnInit() {
     super.ngOnInit();
 
-    // Use attribute 'required' rather than setting Valiator.required so that
-    // screen readers indentify fields that are required
     this.formGroup = this.fb.group({
-      isRegistered: [this.incomeReviewDataService.isRegistered],
-      isIncomeLess: [this.incomeReviewDataService.isIncomeLess],
+      isRegistered: [
+        this.incomeReviewDataService.isRegistered,
+        Validators.required,
+      ],
+      isIncomeLess: [
+        this.incomeReviewDataService.isIncomeLess,
+        Validators.required,
+      ],
     });
   }
 

@@ -12,7 +12,7 @@ import {
   FpcDocumentTypes,
   IncomeReviewDataService,
 } from '../../services/income-review-data.service';
-import { FormBuilder } from '@angular/forms';
+import { FormBuilder, Validators } from '@angular/forms';
 import { environment } from '../../../../environments/environment';
 
 @Component({
@@ -156,7 +156,7 @@ export class IncomeComponent extends BaseForm implements OnInit, AfterViewInit {
 
   get incomeTotalLineNo() {
     return (
-      this.incomeLineNumber + (this.hasSpouse ? this.spouseIncomeLineNumber : 1)
+      this.incomeLineNumber + (this.hasSpouse ? this.spouseIncomeLineNumber : 0)
     );
   }
 
@@ -210,14 +210,20 @@ export class IncomeComponent extends BaseForm implements OnInit, AfterViewInit {
     // Use attribute 'required' rather than setting Valiator.required so that
     // screen readers indentify fields that are required
     this.formGroup = this.fb.group({
-      isLastYearIncome: [this.incomeReviewDataService.isLastYearIncome],
+      isLastYearIncome: [
+        this.incomeReviewDataService.isLastYearIncome,
+        Validators.required,
+      ],
       income: [
         this.incomeReviewDataService.applicant.incomeStr,
-        { updateOn: 'blur' },
+        { validators: Validators.required, updateOn: 'blur' },
       ],
       spouseIncome: [
         this.incomeReviewDataService.spouse.incomeStr,
-        { updateOn: 'blur' },
+        {
+          validators: this.hasSpouse ? Validators.required : null,
+          updateOn: 'blur',
+        },
       ],
       incomeTotal: [
         {
@@ -229,15 +235,25 @@ export class IncomeComponent extends BaseForm implements OnInit, AfterViewInit {
       ],
       hasRdspIncome: [
         this.incomeReviewDataService.hasRdspIncome,
-        { updateOn: 'blur' },
+        {
+          validators: this.isLastYearIncome ? Validators.required : null,
+          updateOn: 'blur',
+        },
       ],
       rdspIncome: [
         this.incomeReviewDataService.applicant.rdspIncomeStr,
-        { updateOn: 'blur' },
+        {
+          validators: this.hasRdspIncome ? Validators.required : null,
+          updateOn: 'blur',
+        },
       ],
       spouseRdspIncome: [
         this.incomeReviewDataService.spouse.rdspIncomeStr,
-        { updateOn: 'blur' },
+        {
+          validators:
+            this.hasSpouse && this.hasRdspIncome ? Validators.required : null,
+          updateOn: 'blur',
+        },
       ],
       rdspIncomeTotal: [
         {
@@ -300,6 +316,12 @@ export class IncomeComponent extends BaseForm implements OnInit, AfterViewInit {
   continue() {
     this.markAllInputsTouched();
 
+    // Work around since file uploader is not compatiable with reactive forms
+    // and it is not designed as a custom form control
+    if (this.incomeReviewDataService.incomeSupportDocs.length < 1) {
+      this.errorMessage = 'File is required.';
+    }
+
     if (
       this.canContinue() &&
       this.incomeReviewDataService.incomeSupportDocs.length > 0 &&
@@ -332,14 +354,34 @@ export class IncomeComponent extends BaseForm implements OnInit, AfterViewInit {
   }
 
   resetRsdpIncome() {
+    const apRsdpIncome = this.formGroup.controls.rdspIncome;
+    apRsdpIncome.reset(null);
+
     this.formGroup.controls.rdspIncomeTotal.reset(null);
     this.formGroup.controls.netIncomeMinusRdsp.reset(null);
+
+    // Set validators
+    if (this.hasRdspIncome) {
+      apRsdpIncome.setValidators(Validators.required);
+    } else {
+      apRsdpIncome.clearValidators();
+    }
+
+    if (this.hasSpouse) {
+      const spRsdpIncome = this.formGroup.controls.spouseRdspIncome;
+      spRsdpIncome.reset(null);
+
+      if (this.hasRdspIncome) {
+        spRsdpIncome.setValidators(Validators.required);
+      } else {
+        spRsdpIncome.clearValidators();
+      }
+    }
   }
 
   resetIncome() {
     // Reset flags on control
     this.formGroup.controls.income.reset(null);
-    this.formGroup.controls.rdspIncome.reset(null);
 
     if (this.hasSpouse) {
       // Reset flags on control

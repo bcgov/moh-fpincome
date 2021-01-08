@@ -1,3 +1,12 @@
+## [2.0.3](https://github.com/bcgov/moh-fpincome/compare/v2.0.2...v2.0.3) (2021-01-08)
+
+### Bug Fixes
+
+- reported jira issues fpcirn-19, fpcirn-20, fpcirn-22 ([f652078](https://github.com/bcgov/moh-fpincome/commit/f65207889d2d07208afc3eea9e2adb7ade12d73e))
+- **income:** work-around for file uploader ([789f458](https://github.com/bcgov/moh-fpincome/commit/789f458333b514ad5911059633e3c921e4a83480))
+- **modal:** partial fix for keeping tabbing inside dialog ([4c733bf](https://github.com/bcgov/moh-fpincome/commit/4c733bfed84977feafdc82e48095f42d9496cb2f))
+- **wording:** addressed communications identified issues ([66ef63f](https://github.com/bcgov/moh-fpincome/commit/66ef63fff2259ecfdb818b737b82a601d02f2e37))
+
 <a name="2.0.2"></a>
 
 ## [2.0.2](https://github.com/bcgov/moh-fpincome/compare/v2.0.1...v2.0.2) (2020-12-18)
